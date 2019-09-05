@@ -17,6 +17,10 @@ const createUsersWithShifts = async () => {
           position: 'bartender',
           startTime: '2019-09-06T17:00:00+0000',
           endTime: '2019-09-06T22:00:00+0000',
+        },{
+          position: 'dj',
+          startTime: '2019-10-01T13:00:00+0000',
+          endTime: '2019-10-03T19:00:00+0000',
         }, {
           position: 'server',
           startTime: '2019-09-07T13:00:00+0000',
