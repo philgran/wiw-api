@@ -56,9 +56,8 @@ router.delete('/:shiftId', async (req, res) => {
   const result = await req.context.models.Shift.destroy({
     where: { id: req.params.shiftId }
   });
-  debugger;
-  result.destroy();
-  return res.send(true);
+  // Result will be the number of deleted rows, if it's more than zero destroy worked.
+  return res.send(result > 0);
 });
 
 export default router;
