@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import _ from 'lodash';
 
 const router = Router();
 
@@ -6,6 +7,19 @@ router.get('/', async (req, res) => {
   const shifts = await req.context.models.Shift.findAll({
     order: [['startTime', 'ASC']]
   });
+  // If start and end are in params, filter by date range
+  const q = req.query
+  if (!_.isEmpty(q) && q.start && q.end) {
+    // Create the filtered array of shifts
+    const filteredShifts = shifts.filter((model) => {
+      const startTimeInMs = +new Date(model.startTime);
+      const endTimeInMs = +new Date(model.endTime);
+      const startQueryInMs = +new Date(q.start);
+      const endQueryInMs = +new Date(q.end)
+      return startTimeInMs > startQueryInMs && endTimeInMs < endQueryInMs;
+    });
+    return res.send(filteredShifts);
+  }
   return res.send(shifts);
 });
 
