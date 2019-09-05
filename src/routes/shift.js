@@ -56,7 +56,9 @@ router.delete('/:shiftId', async (req, res) => {
   const result = await req.context.models.Shift.destroy({
     where: { id: req.params.shiftId }
   });
-  return res.send(result);
+  debugger;
+  result.destroy();
+  return res.send(true);
 });
 
 export default router;
