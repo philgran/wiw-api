@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import _ from 'lodash';
+import shiftValidator from '../shift-validator';
 
 const router = Router();
 
@@ -12,6 +13,7 @@ router.get('/', async (req, res) => {
   if (!_.isEmpty(q) && q.start && q.end) {
     // Create the filtered array of shifts
     const filteredShifts = shifts.filter((model) => {
+      // Convert all dates to unix epoch for easier maths
       const startTimeInMs = +new Date(model.startTime);
       const endTimeInMs = +new Date(model.endTime);
       const startQueryInMs = +new Date(q.start);
@@ -31,6 +33,13 @@ router.get('/:shiftId', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
+  // TODO: validate that date ranges do not overlap
+  // const currentShifts = await req.context.me.getShifts();
+  // const newShift = {
+  //   startTime: req.body.startTime,
+  //   endTime: req.body.endTime
+  // }
+  // if (shiftValidator(currentShifts, newShift)) {
   const shift = await req.context.models.Shift.create({
     userId: req.context.me.id,
     position: req.body.position,
@@ -38,6 +47,8 @@ router.post('/', async (req, res) => {
     endTime: req.body.endTime,
   });
   return res.send(shift);
+  // }
+  // return res.send('Date range invalid');
 });
 
 router.put('/:shiftId', async (req, res) => {

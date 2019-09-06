@@ -1,0 +1,164 @@
+{
+	"info": {
+		"_postman_id": "9417a002-de84-483e-b03a-f8990b1f9c0b",
+		"name": "WIW API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "List shifts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/shifts/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"shifts",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Filter shifts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/shifts/?start=2019-09-06&end=2019-09-07",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"shifts",
+						""
+					],
+					"query": [
+						{
+							"key": "start",
+							"value": "2019-09-06"
+						},
+						{
+							"key": "end",
+							"value": "2019-09-07"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create shift",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"position\": \"bouncer\",\n    \"startTime\": \"2019-09-08T17:00:00+0000\",\n    \"endTime\": \"2019-09-08T22:00:00+0000\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/shifts/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"shifts",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update shift",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"startTime\": \"2019-09-08T17:00:00+0000\",\n    \"endTime\": \"2019-09-08T22:00:00+0000\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/shifts/:shiftId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"shifts",
+						":shiftId"
+					],
+					"variable": [
+						{
+							"key": "shiftId",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete shift",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/shifts/:shiftId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"shifts",
+						":shiftId"
+					],
+					"variable": [
+						{
+							"key": "shiftId",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
